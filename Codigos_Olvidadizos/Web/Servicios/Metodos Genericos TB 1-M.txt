@@ -1,0 +1,22 @@
+public class TB3Service
+    {
+        public List<TB3> TodasTB3()
+        {
+            using (var contexto = new DbContext())
+            {
+                List<TB3> Tb3 = new List<TB3>();
+
+                Tb3 = contexto.TB3.Where(x => x.Estado == true).Include(c => c.TB1).Include(d => d.TB2).ToList();
+                return TB3;
+            }
+        }
+
+    }
+
+
+        public ActionResult CreateControlador()
+        {
+            ViewBag.IdTB1 = new SelectList(ctsv.TodosLosTB1(), "IdTB1", "Data");
+            ViewBag.IdTB2 = new SelectList(dpsv.TodosTB2(), "IdTB2", "Data");
+            return View();
+        }

@@ -1,0 +1,105 @@
+  public class TB1Service
+    {
+            
+        public List<TB1> TodosLosTB1Activos()
+        {
+            using (var contexto = new DbContext())
+            {
+                List<TB1> _ListaTB1 = new List<TB1>();
+
+                _ListaTB1 = contexto.TB1.Where(x => x.Estado == true).ToList();
+                return _ListaTB1;
+            }
+        }
+
+        public List<TB1> TodosLosTB1()
+        {
+            using (var contexto = new DbContext())
+            {
+                List<TB1> _ListaTB1 = new List<TB1>();
+
+                _ListaTB1 = contexto.TB1.ToList();
+                return _ListaTB1;
+            }
+        }
+
+
+        public bool GuardarTB1(TB1 tb1)
+        {
+            using (var contexto = new DbContext())
+            {
+                contexto.Set<TB1>().Add(tb1);
+
+                if (contexto.SaveChanges() > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public TB1 ObtenerTB1XId(int? id)
+        {
+            using (var contexto = new DbContext())
+            {
+                var _Tb1 = contexto.TB1.Where(x => x.IdContacto == id).FirstOrDefault();
+
+                return _Tb1;
+            }
+        }
+
+        public bool EditarTB1(TB1 tb1)
+        {
+            using (var contexto = new DbContext())
+            {
+                var _Tb1 = contexto.TB1.Where(x => x.IdTB1 == TB1.IdTB1).FirstOrDefault();
+
+                if (_Tb1 == null)
+                {
+                    Console.Write("Sin registro");
+                    return false;
+                }
+
+                _Tb1.TB3 = contexto.TB1.ToList();
+                Mapper<TB1>.EditarEntidad(tb1, _Tb1);
+                contexto.Entry(_Tb1).State = EntityState.Modified;
+
+                if (contexto.SaveChanges() > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    Console.Write("Error al editar el registro");
+                }
+            }
+        }
+
+        public bool EliminarTB1 (int? id)
+        {
+            using (var contexto = new DbContext())
+            {
+                var _Tb1 = contexto.TB1.Where(x => x.IdTB1 == id).FirstOrDefault();
+                if (_Tb1 == null)
+                {
+                    Console.Write("Sin registro");
+                    return false;
+                }
+
+                _Tb1.Estado = false;
+                contexto.Entry(_Tb1).State = EntityState.Modified;
+                if (contexto.SaveChanges() > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    Console.Write("Error al eliminar el registro");
+                    return false;
+                }
+            }
+        }
+    }

@@ -1,0 +1,32 @@
+    <script>
+    function calcularEdad() {
+        var hoy = new Date();
+        var cumpleanos = new Date($('#5').val());
+        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+        var m = hoy.getMonth() - cumpleanos.getMonth();
+
+        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+            edad--;
+        }
+        $('#4').val(edad);
+    }
+
+        function Calculo() {
+            var peso = $('#1').val();
+            var estatura = $('#2').val();
+            if (peso > 0 && estatura > 0 ) {
+                var imc = parseFloat(peso / (estatura * 2)).toFixed(2);
+                $('#3').val(imc);
+            }
+            else
+            {
+                if (peso == null || estad == null) {
+
+                }
+                else {
+                    alert("El peso o la altura no pueden ser valor 0. Por favor revisar");
+                    $('#3').val(0);
+                }
+            }
+        }
+    </script>

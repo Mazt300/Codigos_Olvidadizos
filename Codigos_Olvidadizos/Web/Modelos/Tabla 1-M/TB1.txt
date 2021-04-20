@@ -1,0 +1,12 @@
+    public class TB1
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdTB1 { get; set; }
+        public string Data1 { get; set; }
+        public string Data2 { get; set; }
+        public bool Estado { get; set; }
+
+        public virtual ICollection<TB2> TB2 { get; set; }
+    }
+}

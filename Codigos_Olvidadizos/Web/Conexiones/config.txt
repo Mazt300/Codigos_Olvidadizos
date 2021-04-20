@@ -1,0 +1,5 @@
+  <connectionStrings>
+    <add name="conexion" connectionString="Server=tcp:almacendedatos.database.windows.net,1433;Initial Catalog = BD; Persist Security Info=False;User ID = administradorglobal; Password=Cs_almacendatos; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 300;" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+
+ <globalization uiCulture="es" culture="es-NI" fileEncoding="utf-8"/>
